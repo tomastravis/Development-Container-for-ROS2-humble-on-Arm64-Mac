@@ -2,7 +2,7 @@
 SCRIPT_DIR=$(cd $(dirname "$0") && pwd)
 cd $SCRIPT_DIR
 
-NAME_IMAGE="development-container-for-ros-2-on-m1-2-mac_for_${USER}"
+NAME_IMAGE="development-container-for-ros-2-humble-on-m1-2-mac_for_${USER}"
 
 if [ ! "$(docker image ls -q ${NAME_IMAGE})" ]; then
     if [ ! $# -ne 1 ]; then
@@ -53,8 +53,8 @@ fi
 # Commit
 if [ ! $# -ne 1 ]; then
     if [ "commit" = $1 ]; then
-        docker commit development-container-for-ros-2-on-m1-2-mac_for_${USER}_container development-container-for-ros-2-on-m1-2-mac_for_${USER}:latest
-        CONTAINER_ID=$(docker ps -a -f name=development-container-for-ros-2-on-m1-2-mac_for_${USER}_container --format "{{.ID}}")
+        docker commit development-container-for-ros-2-humble-on-m1-2-mac_for_${USER}_container development-container-for-ros-2-humble-on-m1-2-mac_for_${USER}:latest
+        CONTAINER_ID=$(docker ps -a -f name=development-container-for-ros-2-humble-on-m1-2-mac_for_${USER}_container --format "{{.ID}}")
         docker rm $CONTAINER_ID -f
         exit 0
     fi
@@ -63,7 +63,7 @@ fi
 # Stop
 if [ ! $# -ne 1 ]; then
     if [ "stop" = $1 ]; then
-        CONTAINER_ID=$(docker ps -a -f name=development-container-for-ros-2-on-m1-2-mac_for_${USER}_container --format "{{.ID}}")
+        CONTAINER_ID=$(docker ps -a -f name=development-container-for-ros-2-humble-on-m1-2-mac_for_${USER}_container --format "{{.ID}}")
         docker stop $CONTAINER_ID
         docker rm $CONTAINER_ID -f
         exit 0
@@ -74,16 +74,16 @@ fi
 if [ ! $# -ne 1 ]; then
     if [ "delete" = $1 ]; then
         echo 'Now deleting docker container...'
-        CONTAINER_ID=$(docker ps -a -f name=development-container-for-ros-2-on-m1-2-mac_for_${USER}_container --format "{{.ID}}")
+        CONTAINER_ID=$(docker ps -a -f name=development-container-for-ros-2-humble-on-m1-2-mac_for_${USER}_container --format "{{.ID}}")
         docker stop $CONTAINER_ID
         docker rm $CONTAINER_ID -f
-        docker image rm development-container-for-ros-2-on-m1-2-mac_for_${USER}
+        docker image rm development-container-for-ros-2-humble-on-m1-2-mac_for_${USER}
         exit 0
     fi
 fi
 
 DOCKER_OPT=""
-DOCKER_NAME="development-container-for-ros-2-on-m1-2-mac_for_${USER}_container"
+DOCKER_NAME="development-container-for-ros-2-humble-on-m1-2-mac_for_${USER}_container"
 DOCKER_WORK_DIR="/home/${USER}"
 MAC_WORK_DIR="/Users/${USER}"
 
@@ -101,7 +101,7 @@ DOCKER_OPT="${DOCKER_OPT} \
                 -e PASSWD=${USER}"
 
 ## Allow X11 Connection
-CONTAINER_ID=$(docker ps -a -f name=development-container-for-ros-2-on-m1-2-mac_for_${USER}_container --format "{{.ID}}")
+CONTAINER_ID=$(docker ps -a -f name=development-container-for-ros-2-humble-on-m1-2-mac_for_${USER}_container --format "{{.ID}}")
 if [ ! "$CONTAINER_ID" ]; then
     if [ ! $# -ne 1 ]; then
         if [ "xrdp" = $1 ]; then
@@ -109,14 +109,14 @@ if [ ! "$CONTAINER_ID" ]; then
             docker run ${DOCKER_OPT} \
                 --name=${DOCKER_NAME} \
                 --entrypoint docker-entrypoint.sh \
-                development-container-for-ros-2-on-m1-2-mac_for_${USER}:latest
+                development-container-for-ros-2-humble-on-m1-2-mac_for_${USER}:latest
         else
             docker run ${DOCKER_OPT} \
                 --name=${DOCKER_NAME} \
                 --volume=$MAC_WORK_DIR/.Xauthority:$DOCKER_WORK_DIR/.Xauthority:rw \
                 -it \
                 --entrypoint /bin/bash \
-                development-container-for-ros-2-on-m1-2-mac_for_${USER}:latest
+                development-container-for-ros-2-humble-on-m1-2-mac_for_${USER}:latest
         fi
     else
         docker run ${DOCKER_OPT} \
@@ -124,7 +124,7 @@ if [ ! "$CONTAINER_ID" ]; then
             --volume=$MAC_WORK_DIR/.Xauthority:$DOCKER_WORK_DIR/.Xauthority:rw \
             -it \
             --entrypoint /bin/bash \
-            development-container-for-ros-2-on-m1-2-mac_for_${USER}:latest
+            development-container-for-ros-2-humble-on-m1-2-mac_for_${USER}:latest
     fi
 else
     if [ ! $# -ne 1 ]; then
@@ -134,7 +134,7 @@ else
                 --name=${DOCKER_NAME} \
                 --volume=$MAC_WORK_DIR/.Xauthority:$DOCKER_WORK_DIR/.Xauthority:rw \
                 --entrypoint docker-entrypoint.sh \
-                development-container-for-ros-2-on-m1-2-mac_for_${USER}:latest
+                development-container-for-ros-2-humble-on-m1-2-mac_for_${USER}:latest
         else
             docker start $CONTAINER_ID
             docker exec -it $CONTAINER_ID /bin/bash

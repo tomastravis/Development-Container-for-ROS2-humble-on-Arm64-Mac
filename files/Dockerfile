@@ -1,4 +1,4 @@
-FROM ghcr.io/tatsuyai713/development-container-for-ros-2-on-m1-2-mac:v24.04
+FROM ghcr.io/tomastravis/development-container-for-ros-2-humble-on-m1-2-mac:v22.04
 
 ARG UID=9001
 ARG GID=9001
@@ -94,7 +94,7 @@ USER $USERNAME
 # initialize rosdep
 RUN rosdep update
 
-RUN echo "source /opt/ros/jazzy/setup.bash" >> ~/.bashrc
+RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 
 RUN if [ "${LOCALE}" = "JP" ]; then \
     echo "export LANG=ja_JP.UTF-8" >> ~/.bashrc; \

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-NAME_IMAGE="development-container-for-ros-2-on-m1-2-mac"
+NAME_IMAGE="development-container-for-ros-2-humble-on-m1-2-mac"
 echo "Build Base Container"
 
-docker build -f common.dockerfile -t ghcr.io/tatsuyai713/${NAME_IMAGE}:v24.04 .
-docker push ghcr.io/tatsuyai713/${NAME_IMAGE}:v24.04
+docker build -f common.dockerfile -t ghcr.io/tomastravis/${NAME_IMAGE}:v22.04 .
+docker push ghcr.io/tomastravis/${NAME_IMAGE}:v22.04
