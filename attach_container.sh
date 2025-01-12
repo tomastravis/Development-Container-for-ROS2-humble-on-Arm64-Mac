@@ -4,7 +4,7 @@ cd $SCRIPT_DIR
 
 cd files
 
-if [ "$(docker ps -al | grep development-container-for-ros-2-humble-on-m1-2-mac_for_${USER}_container)" ]; then
+if [ "$(docker ps -al | grep development-container-for-ros-2-humble-on-m1-2-mac_for_${USER}_container-asv_loyola)" ]; then
     ./launch_container.sh
 else
     echo "Please start container first!"

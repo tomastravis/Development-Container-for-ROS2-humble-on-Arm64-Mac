@@ -1,4 +1,4 @@
-FROM ghcr.io/tomastravis/development-container-for-ros-2-humble-on-m1-2-mac:v22.04
+FROM ghcr.io/tomastravis/development-container-for-ros-2-humble-on-m1-2-mac-asv_loyola:v22.04
 
 ARG UID=9001
 ARG GID=9001
